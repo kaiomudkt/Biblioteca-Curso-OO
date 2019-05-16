@@ -1,6 +1,6 @@
 package modelo;
 
-import static objetoAcessoDados.DAOBiblioteca.autores;
+import ObjetoAcessoDados_DAO.DAOAutor;
 
 public class ModeloLivro {
 
@@ -19,10 +19,9 @@ public class ModeloLivro {
     public ModeloLivro(String nome, int qtdCopias, String cpfAutor) {
         this.nome = nome;
         this.qtdCopias = qtdCopias;
-        this.autor = autores.get(cpfAutor);
+        this.autor = (ModeloAutor) new DAOAutor().get(cpfAutor);//autores.get(cpfAutor);
         this.disponivelParaEmprestimo = true;
     }
-    
     
 
     public String getNome() {

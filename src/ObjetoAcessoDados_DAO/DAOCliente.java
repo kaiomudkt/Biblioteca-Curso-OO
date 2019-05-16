@@ -1,29 +1,29 @@
-package contole;
+package ObjetoAcessoDados_DAO;
 
 import assistente.InterfaceCRUD;
 import modelo.ModeloCliente;
-import static objetoAcessoDados.DAOBiblioteca.clientes;
+import static armazenaDados.DadosBiblioteca.clientes;
 /**
- * A classe ControleCliente
- * tem acesso direto a lista de clientes,
- * que esta armazenada em uma TreeMap do tipo ModeloCliente.java
- * na classe DAOBiblioteca.java
- * veja que a lista de cliente, chamada de (clientes),
- * é static, ou seja, sempre vamos esta utilizando a mesma TreeMap,
- * e não um instancia dela.
+ * A classe DAOCliente
+ tem acesso direto a lista de clientes,
+ que esta armazenada em uma TreeMap do tipo ModeloCliente.java
+ na classe DadosBiblioteca.java
+ veja que a lista de cliente, chamada de (clientes),
+ é static, ou seja, sempre vamos esta utilizando a mesma TreeMap,
+ e não um instancia dela.
  * 
- * A classe ControleCliente
- * também importa ModeloCliente.java
- * para poder criar objetos deste tipo/formato
- * e assim poder manipulalos de acordo com a necessidade de cada método.
- * 
- * A classe ControleCliente
- * implementa a interface InterfaceCRUD
- * do pacote assitente
- * que possui assinatura do comportamento padrão de método 
- * necessário em nosso contexto
+ * A classe DAOCliente
+ também importa ModeloCliente.java
+ para poder criar objetos deste tipo/formato
+ e assim poder manipulalos de acordo com a necessidade de cada método.
+ 
+ A classe DAOCliente
+ implementa a interface InterfaceCRUD
+ do pacote assitente
+ que possui assinatura do comportamento padrão de método 
+ necessário em nosso contexto
  */
-public class ControleCliente implements InterfaceCRUD {
+public class DAOCliente implements InterfaceCRUD {
 
     @Override
     public boolean contem(String cpf) {
@@ -48,7 +48,7 @@ public class ControleCliente implements InterfaceCRUD {
                 System.out.println("Cliente ja possui este livro.");
                 return false;
             }
-            ControleLivro cLivro = new ControleLivro();
+            DAOLivro cLivro = new DAOLivro();
             cliente.addLivroListaEmprestados(cLivro.getLivro(nomeLivro));
             clientes.put(cpf, cliente);//escreve mudanças na Lista de clientes
             cLivro.emprestarLivro(nomeLivro);
@@ -64,7 +64,7 @@ public class ControleCliente implements InterfaceCRUD {
      */
     public void devolverLivroEmprestado(String nomeLivro, String cpfCliente) {
         ModeloCliente cliente = clientes.get(cpfCliente);//acha cliente
-        ControleLivro cLivro = new ControleLivro();
+        DAOLivro cLivro = new DAOLivro();
         if (cliente.contemLivro(nomeLivro)) {
             cliente.removerLivroListaEmprestados(cLivro.getLivro(nomeLivro));//atualiza livro que estao com o cliente
             cLivro.devolverLivroEmprestado(nomeLivro);//atualiza qtd copias disponivel
@@ -75,7 +75,7 @@ public class ControleCliente implements InterfaceCRUD {
 
     @Override
     public Object get(String chave) {
-        return clientes.get(chave);
+        return (ModeloCliente) clientes.get(chave);
     }
 
 }

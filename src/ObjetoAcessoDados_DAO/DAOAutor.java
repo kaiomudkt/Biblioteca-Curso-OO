@@ -1,10 +1,10 @@
-package contole;
+package ObjetoAcessoDados_DAO;
 
 import assistente.InterfaceCRUD;
 import modelo.ModeloAutor;
-import static objetoAcessoDados.DAOBiblioteca.autores;
+import static armazenaDados.DadosBiblioteca.autores;
 
-public class ControleAutor implements InterfaceCRUD {
+public class DAOAutor implements InterfaceCRUD {
     
     @Override
     public boolean contem(String cpf) {
@@ -24,7 +24,7 @@ public class ControleAutor implements InterfaceCRUD {
 
     @Override
     public Object get(String chave) {
-        return autores.get(chave);
+        return (ModeloAutor) autores.get(chave);
     }
 
 }

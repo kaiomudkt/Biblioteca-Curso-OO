@@ -1,10 +1,10 @@
-package contole;
+package ObjetoAcessoDados_DAO;
 
 import modelo.ModeloLivro;
-import static objetoAcessoDados.DAOBiblioteca.livros;
+import static armazenaDados.DadosBiblioteca.livros;
 import assistente.InterfaceCRUD;
 
-public class ControleLivro implements InterfaceCRUD {
+public class DAOLivro implements InterfaceCRUD {
 
     @Override
     public boolean contem(String chave) {
@@ -44,7 +44,7 @@ public class ControleLivro implements InterfaceCRUD {
 
     @Override
     public Object get(String chave) {
-        return livros.get(chave);
+        return (ModeloLivro) livros.get(chave);
     }
     
     public void listarLivrosCadastrados(){

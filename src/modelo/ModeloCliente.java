@@ -1,7 +1,6 @@
 package modelo;
 
 import assistente.Pessoa;
-import static objetoAcessoDados.DAOBiblioteca.livros;
 
 public class ModeloCliente extends Pessoa {
 
