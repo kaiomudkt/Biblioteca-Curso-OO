@@ -7,10 +7,11 @@ import modelo.ModeloLivro;
 public class ControlePrincipalBiblioteca {
 
     public void cadastrarLivro(String nome, int qtdCopias, String nomeAutor, String cpfAutor) {
+        ControleLivro cLivro = new ControleLivro();
         if (new ControleAutor().contem(cpfAutor)) {
-            ModeloLivro livro = new ModeloLivro(nome, qtdCopias, cpfAutor);
+            cLivro.cadastrar(new ModeloLivro(nome, qtdCopias, cpfAutor));
         } else {
-            new ControleLivro().cadastrar(nome, qtdCopias, new ModeloAutor(nomeAutor, cpfAutor));
+            cLivro.cadastrar(new ModeloLivro(nome, qtdCopias, new ModeloAutor(nomeAutor, cpfAutor)));
         }
     }
 
@@ -18,7 +19,7 @@ public class ControlePrincipalBiblioteca {
         if (new ControleCliente().contem(cpf)) {
             return false;
         } else {
-            
+
             new ControleCliente().cadastrar(new ModeloCliente(nome, cpf));
             return true;
         }
