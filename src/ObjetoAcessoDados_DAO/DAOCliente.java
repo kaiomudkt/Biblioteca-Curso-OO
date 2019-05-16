@@ -5,17 +5,18 @@ import modelo.ModeloCliente;
 import static armazenaDados.DadosBiblioteca.clientes;
 /**
  * A classe DAOCliente
- tem acesso direto a lista de clientes,
- que esta armazenada em uma TreeMap do tipo ModeloCliente.java
- na classe DadosBiblioteca.java
- veja que a lista de cliente, chamada de (clientes),
- é static, ou seja, sempre vamos esta utilizando a mesma TreeMap,
- e não um instancia dela.
+ * tem acesso direto a lista de clientes,
+ * que esta armazenada em uma TreeMap,
+ * esta TreeMap é do tipo ModeloCliente
+ * na classe DadosBiblioteca.java
+ * veja que a lista de cliente, chamada de (clientes),
+ * é static, ou seja, sempre vamos esta utilizando a MESMA TreeMap clientes,
+ * e não uma nova instancia dela.
  * 
  * A classe DAOCliente
- também importa ModeloCliente.java
- para poder criar objetos deste tipo/formato
- e assim poder manipulalos de acordo com a necessidade de cada método.
+ * também importa ModeloCliente.java
+ * para poder criar objetos deste tipo/formato
+ * e assim poder manipulalos de acordo com a necessidade de cada método.
  
  A classe DAOCliente
  implementa a interface InterfaceCRUD

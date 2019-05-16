@@ -8,13 +8,13 @@ import modelo.ModeloCliente;
 import modelo.ModeloLivro;
 /**
  * esta classe ControleBibliotecario,
- tem acesso direto somente as tres classes do tipo CONTROLE
- e utiliza os respectivos MODELO de cada CONTROLE
- para se comunicar com o CONTROLE por objetos de seu tipo "MODELO".
+ tem acesso direto somente as tres classes do tipo DAO
+ e utiliza os respectivos MODELO de cada DAO
+ para se comunicar com o DAO por objetos de seu tipo "MODELO".
  * 
  * Por meio desta classe ControleBibliotecario
  que a classe Teste.java
- esta exercendo o papel de "interface grafica",
+ esta exercendo porcamente o papel de "interface grafica",
  que é a responsável por interagir com o usuario de nossa aplicação,
  assim a classe Teste.java irá interagir somente 
  com a clesse ControleBibliotecario.
