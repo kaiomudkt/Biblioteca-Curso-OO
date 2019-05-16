@@ -24,13 +24,7 @@ public class ModeloCliente extends Pessoa {
         return false;
     }
 
-    public ModeloLivro[] getLivrosEmprestados() {
-        return livrosEmprestados;
-    }
-
-    public void setLivrosLocados(ModeloLivro[] livrosLocados) {
-        this.livrosEmprestados = livrosLocados;
-    }
+    
 
     public boolean addLivroListaEmprestados(ModeloLivro livro) {
         if (!contemLivro(livro.getNome())) {
@@ -43,8 +37,21 @@ public class ModeloCliente extends Pessoa {
         }
         return false;
     }
+    
+    
+    public boolean removerLivroListaEmprestados(ModeloLivro livro) {
+        if (contemLivro(livro.getNome())) {
+            for (int i = 0; i < livrosEmprestados.length; i++) {
+                if (livrosEmprestados[i].equals(livro)) { //esse equal vai comparar certo ? por ser instancia diferentes, mesmo tendo o mesmo conteudo, lembra do hashCode e equals aquele problema?
+                    livrosEmprestados[i] = null;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-    public void pritLivrosEmprestados() {
+    public void pritarLivrosEmprestados() {
         System.out.println("Livros emprestados: ");
         for (int i = 0; i < livrosEmprestados.length; i++) {
             if (livrosEmprestados[i] != null) {
@@ -56,7 +63,15 @@ public class ModeloCliente extends Pessoa {
 
     @Override
     public String toString() {
-        return getNome() + " " + getCpf() + " " + getLivrosEmprestados(); //To change body of generated methods, choose Tools | Templates.
+        return getNome() + " " + getCpf() + " " + getLivrosEmprestados(); //To change body of generated methods, choose Tools | Templates. acho q vai ter q implementar o hashCode e Equals
+    }
+    
+    public ModeloLivro[] getLivrosEmprestados() {
+        return livrosEmprestados;
+    }
+
+    public void setLivrosLocados(ModeloLivro[] livrosLocados) {
+        this.livrosEmprestados = livrosLocados;
     }
 
 }

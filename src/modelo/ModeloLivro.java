@@ -22,6 +22,8 @@ public class ModeloLivro {
         this.autor = autores.get(cpfAutor);
         this.disponivelParaEmprestimo = true;
     }
+    
+    
 
     public String getNome() {
         return nome;
