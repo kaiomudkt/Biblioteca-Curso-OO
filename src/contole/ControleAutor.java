@@ -1,32 +1,35 @@
 package contole;
 
-import assistente.InterfaceDe_CRUD_DeListasDePessoas;
+import assistente.InterfaceCRUD;
 import modelo.ModeloAutor;
 import static objetoAcessoDados.DAOBiblioteca.autores;
 
-public class ControleAutor implements InterfaceDe_CRUD_DeListasDePessoas {
-
+public class ControleAutor implements InterfaceCRUD {
+    
     @Override
-    public boolean contem(String cpf) {
-        if (autores.containsKey(cpf)) {
+    public boolean contem(Object obj) {
+        ModeloAutor autor = (ModeloAutor) obj;
+        if (autores.containsKey(autor.getCpf())) {
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean cadastrar(String nome, String cpf) {
-        if (contem(cpf)) {
-            ModeloAutor autor = new ModeloAutor(nome, cpf);
+    public boolean cadastrar(Object obj) {
+        ModeloAutor autor = (ModeloAutor) obj;
+        if (contem(autor.getCpf())) {
             return true;
         }
+        autores.put(autor.getCpf(), autor);
         return false;
     }
 
     @Override
-    public boolean remover(String cpf) {
-        if (contem(cpf)) {
-            autores.remove(cpf);
+    public boolean remover(Object obj) {
+        ModeloAutor autor = (ModeloAutor) obj;
+        if (contem(autor.getCpf())) {
+            autores.remove(autor.getCpf());
         }
         System.out.println("Não existe Autor com este CPF.");
         return false;

@@ -1,39 +1,30 @@
 package contole;
 
-import assistente.InterfaceDe_CRUD_DeListasDePessoas;
+import assistente.InterfaceCRUD;
 import modelo.ModeloCliente;
 import static objetoAcessoDados.DAOBiblioteca.clientes;
-//import static objetoAcessoDados.DAOBiblioteca.livros;
 
-public class ControleCliente implements InterfaceDe_CRUD_DeListasDePessoas {
+public class ControleCliente implements InterfaceCRUD {
 
     @Override
-    public boolean cadastrar(String nome, String cpf) {
-        if (contem(cpf)) {//existe no ArrayList de Cliente, cliente com este CPF
-            System.out.println("CPF já cadastrado como Cliente.");
-            return false;
-        }
-        //Não existe esse cpf
-        clientes.put(cpf, new ModeloCliente(nome, cpf));//cria novo Cliente no ArrayList
-        return true;
-    }
-
-    /*
-    * Método contemCliente verifica se existe esse cpf cadastrado como cliente
-     */
-    @Override
-    public boolean contem(String cpf) {
-        for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getCpf().equals(cpf)) {
+    public boolean contem(Object obj) {
+        ModeloCliente cliente = (ModeloCliente) obj;
+            if (clientes.containsKey(cliente.getCpf())) {
                 return true;
             }
-        }
         return false;
     }
 
     @Override
-    public boolean remover(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean cadastrar(Object obj) {
+        ModeloCliente cliente = (ModeloCliente) obj;
+        return clientes.put(cliente.getCpf(), cliente) != null;
+    }
+
+    @Override
+    public boolean remover(Object obj) {
+        ModeloCliente cliente = (ModeloCliente) obj;
+        return clientes.remove(cliente.getCpf()) != null;
     }
 
     public boolean pegarLivroEmprestado(String nomeLivro, String cpf) {
@@ -52,5 +43,9 @@ public class ControleCliente implements InterfaceDe_CRUD_DeListasDePessoas {
             return false;
         }
     }
-
+    
+    
+    public boolean devolverLivroEmprestado(){
+    
+    }
 }

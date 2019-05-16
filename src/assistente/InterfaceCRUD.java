@@ -2,9 +2,9 @@ package assistente;
 
 public interface InterfaceCRUD {
 
-    public boolean contem(String cpf);
+    public boolean contem(Object obj);
 
-    public boolean cadastrar(String nome, String cpf);
+    public void cadastrar(Object obj);
 
-    public boolean remover(String cpf);
+    public void remover(Object obj);
 }
