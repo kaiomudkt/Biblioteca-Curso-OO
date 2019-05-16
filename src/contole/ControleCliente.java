@@ -3,7 +3,26 @@ package contole;
 import assistente.InterfaceCRUD;
 import modelo.ModeloCliente;
 import static objetoAcessoDados.DAOBiblioteca.clientes;
-
+/**
+ * A classe ControleCliente
+ * tem acesso direto a lista de clientes,
+ * que esta armazenada em uma TreeMap do tipo ModeloCliente.java
+ * na classe DAOBiblioteca.java
+ * veja que a lista de cliente, chamada de (clientes),
+ * é static, ou seja, sempre vamos esta utilizando a mesma TreeMap,
+ * e não um instancia dela.
+ * 
+ * A classe ControleCliente
+ * também importa ModeloCliente.java
+ * para poder criar objetos deste tipo/formato
+ * e assim poder manipulalos de acordo com a necessidade de cada método.
+ * 
+ * A classe ControleCliente
+ * implementa a interface InterfaceCRUD
+ * do pacote assitente
+ * que possui assinatura do comportamento padrão de método 
+ * necessário em nosso contexto
+ */
 public class ControleCliente implements InterfaceCRUD {
 
     @Override
@@ -46,8 +65,17 @@ public class ControleCliente implements InterfaceCRUD {
     public void devolverLivroEmprestado(String nomeLivro, String cpfCliente) {
         ModeloCliente cliente = clientes.get(cpfCliente);//acha cliente
         ControleLivro cLivro = new ControleLivro();
-        cliente.removerLivroListaEmprestados(cLivro.getLivro(nomeLivro));//atualiza livro que estao com o cliente
-        cLivro.devolverLivroEmprestado(nomeLivro);//atualiza qtd copias disponivel
+        if (cliente.contemLivro(nomeLivro)) {
+            cliente.removerLivroListaEmprestados(cLivro.getLivro(nomeLivro));//atualiza livro que estao com o cliente
+            cLivro.devolverLivroEmprestado(nomeLivro);//atualiza qtd copias disponivel
+        }else{
+            System.out.println("Cliente não pegou esse livro para poder devolver.");
+        }
+    }
+
+    @Override
+    public Object get(String chave) {
+        return clientes.get(chave);
     }
 
 }

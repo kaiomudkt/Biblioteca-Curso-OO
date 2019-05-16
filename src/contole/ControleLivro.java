@@ -5,6 +5,7 @@ import static objetoAcessoDados.DAOBiblioteca.livros;
 import assistente.InterfaceCRUD;
 
 public class ControleLivro implements InterfaceCRUD {
+
     @Override
     public boolean contem(String chave) {
         return livros.containsKey(chave);
@@ -17,29 +18,40 @@ public class ControleLivro implements InterfaceCRUD {
     }
 
     @Override
-    public void remover(String nomeLivro){
+    public void remover(String nomeLivro) {
         livros.remove(nomeLivro);
     }
-    
-    
-    public void devolverLivroEmprestado(String nome){
+
+    public void devolverLivroEmprestado(String nome) {
         ModeloLivro livro = livros.get(nome);
-        livro.setQtdCopias(livro.getQtdCopias()+1);
+        livro.setQtdCopias(livro.getQtdCopias() + 1);
         livros.put(nome, livro);
     }
-    
-    public void emprestarLivro(String nome){
+
+    public void emprestarLivro(String nome) {
         ModeloLivro livro = livros.get(nome);
-        livro.setQtdCopias(livro.getQtdCopias()-1);
+        livro.setQtdCopias(livro.getQtdCopias() - 1);
         livros.put(nome, livro);
     }
-    
-    
-    public int qtdCopiasLivro(String nome){
+
+    public int qtdCopiasLivro(String nome) {
         return livros.get(nome).getQtdCopias();
     }
-    
-    public ModeloLivro getLivro(String nome){
+
+    public ModeloLivro getLivro(String nome) {
         return livros.get(nome);
+    }
+
+    @Override
+    public Object get(String chave) {
+        return livros.get(chave);
+    }
+    
+    public void listarLivrosCadastrados(){
+        livros.;
+    }
+    
+    public void listarLivrosDisponiveis(){
+        livros.;
     }
 }

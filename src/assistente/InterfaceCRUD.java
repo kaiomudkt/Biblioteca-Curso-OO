@@ -7,4 +7,6 @@ public interface InterfaceCRUD {
     public void cadastrar(Object obj);
 
     public void remover(String chave);
+    
+    public Object get(String chave);
 }

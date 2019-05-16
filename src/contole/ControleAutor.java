@@ -21,4 +21,10 @@ public class ControleAutor implements InterfaceCRUD {
     public void remover(String cpf) {
         autores.remove(cpf);
     }
+
+    @Override
+    public Object get(String chave) {
+        return autores.get(chave);
+    }
+
 }

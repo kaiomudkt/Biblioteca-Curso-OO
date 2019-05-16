@@ -3,8 +3,32 @@ package contole;
 import modelo.ModeloAutor;
 import modelo.ModeloCliente;
 import modelo.ModeloLivro;
-
+/**
+ * esta classe ControlePrincipalBibliotecario,
+ * tem acesso direto somente as tres classes do tipo CONTROLE
+ * e utiliza os respectivos MODELO de cada CONTROLE
+ * para se comunicar com o CONTROLE por objetos de seu tipo "MODELO".
+ * 
+ * Por meio desta classe ControlePrincipalBibliotecario
+ * que a classe Teste.java
+ * esta exercendo o papel de "interface grafica",
+ * que é a responsável por interagir com o usuario de nossa aplicação,
+ * assim a classe Teste.java irá interagir somente 
+ * com a clesse ControlePrincipalBibliotecario.
+*/
 public class ControlePrincipalBibliotecario {
+    
+    public ModeloCliente getCliente(String cpf){
+        return (ModeloCliente) new ControleCliente().get(cpf);
+    }
+    
+    public ModeloLivro getLivro(String nome){
+        return (ModeloLivro) new ControleLivro().get(nome);
+    }
+    
+    public ModeloAutor getAutor(String cpf){
+        return (ModeloAutor) new ControleAutor().get(cpf);
+    }
 
     public void cadastrarLivro(String nome, int qtdCopias, String nomeAutor, String cpfAutor) {
         ControleLivro cLivro = new ControleLivro();
@@ -40,7 +64,7 @@ public class ControlePrincipalBibliotecario {
         cCliente.remover(cpf);
     }
 
-    public void emprestarLivro(String nomeLivro, String cpf) {
+    public void ClientePegaLivro(String nomeLivro, String cpf) {
         ControleCliente cCliente = new ControleCliente();
         if (cCliente.contem(cpf)) {
             if (new ControleLivro().qtdCopiasLivro(nomeLivro) > 0) {
@@ -59,8 +83,8 @@ public class ControlePrincipalBibliotecario {
      */
     public void clienteDevolveLivro(String nomeLivro, String cpf) {
         ControleCliente cCliente = new ControleCliente();
-        if (cCliente.contem(cpf)) {
-            if (new ControleLivro().contem(nomeLivro)) {
+        if (cCliente.contem(cpf)) {//existe cliente cadastrado
+            if (new ControleLivro().contem(nomeLivro)) {//existe livro cadastrado
                 cCliente.devolverLivroEmprestado(nomeLivro, cpf);
             }else{
                 System.out.println("Livro não cadastrado para poder devolver");
@@ -69,5 +93,21 @@ public class ControlePrincipalBibliotecario {
             System.out.println("Cliente não cadastrado");
         }
     }
+    
+    
+    public void listaLivrosCadastrados(){
+        ControleLivro cLivro = new ControleLivro();
+        cLivro.
+    
+    }
+    
+    public void listaLivrosDisponiveis(){
+        ControleLivro cLivro = new ControleLivro();
+        cLivro.
+    
+    }
+    
+    
+    
 
 }

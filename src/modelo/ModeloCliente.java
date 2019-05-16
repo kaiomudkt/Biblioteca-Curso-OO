@@ -24,8 +24,6 @@ public class ModeloCliente extends Pessoa {
         return false;
     }
 
-    
-
     public boolean addLivroListaEmprestados(ModeloLivro livro) {
         if (!contemLivro(livro.getNome())) {
             for (int i = 0; i < livrosEmprestados.length; i++) {
@@ -37,8 +35,7 @@ public class ModeloCliente extends Pessoa {
         }
         return false;
     }
-    
-    
+
     public boolean removerLivroListaEmprestados(ModeloLivro livro) {
         if (contemLivro(livro.getNome())) {
             for (int i = 0; i < livrosEmprestados.length; i++) {
@@ -52,7 +49,7 @@ public class ModeloCliente extends Pessoa {
     }
 
     public void pritarLivrosEmprestados() {
-        System.out.println("Livros emprestados: ");
+        System.out.println("Livros emprestados para "+getNome()+": ");
         for (int i = 0; i < livrosEmprestados.length; i++) {
             if (livrosEmprestados[i] != null) {
                 System.out.print(livrosEmprestados[i] + " a");
@@ -61,17 +58,17 @@ public class ModeloCliente extends Pessoa {
         System.out.println("");
     }
 
-    @Override
-    public String toString() {
-        return getNome() + " " + getCpf() + " " + getLivrosEmprestados(); //To change body of generated methods, choose Tools | Templates. acho q vai ter q implementar o hashCode e Equals
-    }
-    
     public ModeloLivro[] getLivrosEmprestados() {
         return livrosEmprestados;
     }
 
     public void setLivrosLocados(ModeloLivro[] livrosLocados) {
         this.livrosEmprestados = livrosLocados;
+    }
+
+    @Override
+    public String toString() {
+        return " "+getNome() + ", " + getCpf() + ", " + getLivrosEmprestados()+" "; //To change body of generated methods, choose Tools | Templates. acho q vai ter q implementar o hashCode e Equals
     }
 
 }

@@ -1,23 +1,24 @@
 package visao;
 
-import static objetoAcessoDados.DAOBiblioteca.clientes;
-import objetoAcessoDados.DAOBiblioteca;
 import contole.ControlePrincipalBibliotecario;
 
 public class Teste {
 
     public static void main(String[] args) {
-        //DAOBiblioteca biblioteca = new DAOBiblioteca();
         ControlePrincipalBibliotecario cBiblioteca = new ControlePrincipalBibliotecario();
+        
         cBiblioteca.cadastrarLivro("Cronicas", 2, "Autor1", "cpfAutor1");
+        cBiblioteca.cadastrarLivro("LeagueOfLegends", 3, "Autor2", "cpfAutor2");
 
         cBiblioteca.cadastrarCliente("Diego", "cpfCliente1");
 
-        cBiblioteca.emprestarLivro("Cronicas", "cpfCliente1");
+        cBiblioteca.ClientePegaLivro("Cronicas", "cpfCliente1");
+        
+        cBiblioteca.getCliente("cpfCliente1").pritarLivrosEmprestados();
 
-        //System.out.println("Clientes: " + clientes);
-        //System.out.println("Livros: "+livros);
-
-        clientes.get("cpfCliente1").pritLivrosEmprestados();
+//        System.out.println("Clientes: " + clientes);
+//        System.out.println("Livros: "+livros);
+//
+//        clientes.get("cpfCliente1").pritarLivrosEmprestados();
     }
 }
