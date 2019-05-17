@@ -14,10 +14,6 @@ import static armazenaDados.DadosBiblioteca.autores;
  * Em nosso caso, não é realmente um Banco de Dados,
  * mas uma "simulação".
  */
-
-/**
- *
- */
 public class DAOAutor implements InterfaceCRUD {
     
     @Override

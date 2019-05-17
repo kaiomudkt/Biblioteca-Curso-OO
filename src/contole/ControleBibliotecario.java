@@ -28,13 +28,22 @@ public class ControleBibliotecario {
     }
 
     public ModeloAutor getAutor(String cpf) {
-        return (ModeloAutor) new DAOAutor().get(cpf);
+        try{
+            return (ModeloAutor) new DAOAutor().get(cpf);
+        }catch(Exception e){
+            System.out.println("Provavelmente não existe esse CPF na TreeMap de ModeloAutor");
+            return null;
+        }
     }
 
     public void cadastrarLivro(String nome, int qtdCopias, String nomeAutor, String cpfAutor) {
         DAOLivro cLivro = new DAOLivro();
         if (new DAOAutor().contem(cpfAutor)) {
             cLivro.cadastrar(new ModeloLivro(nome, qtdCopias, cpfAutor));
+            DAOAutor daoAutor = new DAOAutor();
+            ModeloAutor autor = (ModeloAutor) daoAutor.get(nomeAutor);
+            autor.setQtdObras(autor.getQtdObras()+1);
+            daoAutor.cadastrar(autor);
         } else {
             cLivro.cadastrar(new ModeloLivro(nome, qtdCopias, new ModeloAutor(nomeAutor, cpfAutor)));
         }

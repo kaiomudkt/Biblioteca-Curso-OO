@@ -16,7 +16,12 @@ public class Teste {
         cBiblioteca.ClientePegaLivro("Cronicas", "cpfCliente1");
         cBiblioteca.ClientePegaLivro("LeagueOfLegends", "cpfCliente1");
         
-        cBiblioteca.getCliente("cpfCliente1").pritarLivrosEmprestados();
+        
+        //System.out.println(cBiblioteca.getCliente("cpfCliente1").toString());;
+        System.out.println(cBiblioteca.getAutor("cpfAutor1").toString());
+        //System.out.println(cBiblioteca.getLivro("LeagueOfLegends").toString());
+        
+        //cBiblioteca.getCliente("cpfCliente1").pritarLivrosEmprestados();
 
     }
 }

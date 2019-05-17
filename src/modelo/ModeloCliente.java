@@ -67,7 +67,19 @@ public class ModeloCliente extends Pessoa {
 
     @Override
     public String toString() {
-        return " "+getNome() + ", " + getCpf() + ". "; //To change body of generated methods, choose Tools | Templates. acho q vai ter q implementar o hashCode e Equals
+        String str = "Nome Cliente: "+getNome()+".\nEmprestado:\n";
+        str += livrosCliente();
+        return str;
+    }
+    
+    private String livrosCliente(){
+        String str = "";
+        for (int i = 0; i < this.qtdLivro; i++) {
+            if (livrosEmprestados[i] != null) {
+                str += livrosEmprestados[i]+"\n";
+            }
+        }
+        return str;
     }
 
 }

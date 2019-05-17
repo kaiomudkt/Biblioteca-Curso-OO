@@ -62,7 +62,7 @@ public class ModeloLivro {
 
     @Override
     public String toString() {
-        return getNome()/* + " " + getAutor() + " " + getQtdCopias()*/; //To change body of generated methods, choose Tools | Templates.
+        return "Livro: "+getNome()+" Autor: "+getAutor().toString(); 
     }
 
 }

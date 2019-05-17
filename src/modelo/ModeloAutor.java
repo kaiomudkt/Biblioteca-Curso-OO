@@ -26,7 +26,7 @@ public class ModeloAutor extends Pessoa {
 
     @Override
     public String toString() {
-        return "Nome autor: " + getNome() + " " + getCpf(); //To change body of generated methods, choose Tools | Templates.
+        return "Nome autor: " +getNome()+"."; //To change body of generated methods, choose Tools | Templates.
     }
 
 }
