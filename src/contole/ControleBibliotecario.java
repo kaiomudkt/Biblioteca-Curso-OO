@@ -27,7 +27,7 @@ public class ControleBibliotecario {
         return (ModeloLivro) new DAOLivro().get(nome);
     }
 
-    public ModeloAutor getAutor(String cpf) {
+     public ModeloAutor getAutor(String cpf) {
         try{
             return (ModeloAutor) new DAOAutor().get(cpf);
         }catch(Exception e){
@@ -37,15 +37,16 @@ public class ControleBibliotecario {
     }
 
     public void cadastrarLivro(String nome, int qtdCopias, String nomeAutor, String cpfAutor) {
-        DAOLivro cLivro = new DAOLivro();
-        if (new DAOAutor().contem(cpfAutor)) {
-            cLivro.cadastrar(new ModeloLivro(nome, qtdCopias, cpfAutor));
-            DAOAutor daoAutor = new DAOAutor();
+        DAOLivro daoLivro = new DAOLivro();
+        DAOAutor daoAutor = new DAOAutor();
+        if (daoAutor.contem(cpfAutor)) {
+            daoLivro.cadastrar(new ModeloLivro(nome, qtdCopias, cpfAutor));
             ModeloAutor autor = (ModeloAutor) daoAutor.get(nomeAutor);
             autor.setQtdObras(autor.getQtdObras()+1);
             daoAutor.cadastrar(autor);
         } else {
-            cLivro.cadastrar(new ModeloLivro(nome, qtdCopias, new ModeloAutor(nomeAutor, cpfAutor)));
+            daoLivro.cadastrar(new ModeloLivro(nome, qtdCopias, new ModeloAutor(nomeAutor, cpfAutor)));
+            daoAutor.cadastrar(new ModeloAutor(nomeAutor, cpfAutor));
         }
     }
 
@@ -66,19 +67,19 @@ public class ControleBibliotecario {
     }
 
     public void removeCliente(String cpf) {
-        DAOCliente cCliente = new DAOCliente();
-        if (!cCliente.contem(cpf)) {
+        DAOCliente daoCliente = new DAOCliente();
+        if (!daoCliente.contem(cpf)) {
             System.out.println("Não existe este CPF como cliente.");
             return;// encerra o método
         }
-        cCliente.remover(cpf);
+        daoCliente.remover(cpf);
     }
 
     public void ClientePegaLivro(String nomeLivro, String cpf) {
-        DAOCliente cCliente = new DAOCliente();
-        if (cCliente.contem(cpf)) {
+        DAOCliente daoCliente = new DAOCliente();
+        if (daoCliente.contem(cpf)) {
             if (new DAOLivro().qtdCopiasLivro(nomeLivro) > 0) {
-                cCliente.pegarLivroEmprestado(nomeLivro, cpf);
+                daoCliente.pegarLivroEmprestado(nomeLivro, cpf);
             } else {
                 System.out.println("Não há cópias disponiveis.");
             }
@@ -92,10 +93,10 @@ public class ControleBibliotecario {
      * @cpf cliente que esta devolvendo
      */
     public void clienteDevolveLivro(String nomeLivro, String cpf) {
-        DAOCliente cCliente = new DAOCliente();
-        if (cCliente.contem(cpf)) {// existe cliente cadastrado
+        DAOCliente daoCliente = new DAOCliente();
+        if (daoCliente.contem(cpf)) {// existe cliente cadastrado
             if (new DAOLivro().contem(nomeLivro)) {// existe livro cadastrado
-                cCliente.devolverLivroEmprestado(nomeLivro, cpf);
+                daoCliente.devolverLivroEmprestado(nomeLivro, cpf);
             } else {
                 System.out.println("Livro não cadastrado para poder devolver");
             }
@@ -105,13 +106,13 @@ public class ControleBibliotecario {
     }
 
     public void listaLivrosCadastrados() {
-        DAOLivro cLivro = new DAOLivro();
-        cLivro.listarLivrosCadastrados();
+        DAOLivro daoLivro = new DAOLivro();
+        daoLivro.listarLivrosCadastrados();
 
     }
 
     public void listaLivrosDisponiveis() {
-        DAOLivro cLivro = new DAOLivro();
-        cLivro.listarLivrosDisponiveis();
+        DAOLivro daoLivro = new DAOLivro();
+        daoLivro.listarLivrosDisponiveis();
     }
 }

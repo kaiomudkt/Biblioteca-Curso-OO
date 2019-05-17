@@ -1,10 +1,10 @@
 package modelo;
 
 import assistente.Pessoa;
+
 /**
- * 
- * Classes ModeloClasse, tem por objetivo,
- * somente modelar algo do mundo real,
+ *
+ * Classes ModeloClasse, tem por objetivo, somente modelar algo do mundo real,
  * para gerar objetos que serão manipulados
  */
 public class ModeloAutor extends Pessoa {
@@ -26,7 +26,12 @@ public class ModeloAutor extends Pessoa {
 
     @Override
     public String toString() {
-        return "Nome autor: " +getNome()+"."; //To change body of generated methods, choose Tools | Templates.
+        try {
+            return "Nome autor: " + getNome() + ", qtdObras: " + getQtdObras() + ".\n";
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
 }
