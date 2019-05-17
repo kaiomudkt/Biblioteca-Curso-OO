@@ -7,14 +7,17 @@ public class Teste {
     public static void main(String[] args) {
         ControleBibliotecario cBiblioteca = new ControleBibliotecario();
         
-        cBiblioteca.cadastrarLivro("Cronicas", 2, "Autor1", "cpfAutor1");
-        cBiblioteca.cadastrarLivro("LeagueOfLegends", 3, "Autor2", "cpfAutor2");
+        cBiblioteca.cadastrarLivro("Cronicas", 10, "Autor1", "cpfAutor1");
+        cBiblioteca.cadastrarLivro("LeagueOfLegends", 1, "Autor2", "cpfAutor2");
 
         cBiblioteca.cadastrarCliente("Diego", "cpfCliente1");
+        
 
         cBiblioteca.ClientePegaLivro("Cronicas", "cpfCliente1");
         cBiblioteca.ClientePegaLivro("Cronicas", "cpfCliente1");
         cBiblioteca.ClientePegaLivro("LeagueOfLegends", "cpfCliente1");
+        
+        
         
         
         //System.out.println(cBiblioteca.getCliente("cpfCliente1").toString());;
@@ -23,5 +26,8 @@ public class Teste {
         
         //cBiblioteca.getCliente("cpfCliente1").pritarLivrosEmprestados();
 
+        
+//        cBiblioteca.listaLivrosCadastrados();
+//        cBiblioteca.listaLivrosDisponiveis();
     }
 }

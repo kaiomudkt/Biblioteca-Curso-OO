@@ -66,6 +66,9 @@ public class DAOLivro implements InterfaceCRUD {
     public void emprestarLivro(String nome) {
         ModeloLivro livro = livros.get(nome);
         livro.setQtdCopias(livro.getQtdCopias() - 1);
+        if (livro.getQtdCopias() < 1) {
+            livro.setDisponivelParaEmprestimo(false);
+        }
         livros.put(nome, livro);
     }
 
@@ -96,8 +99,13 @@ public class DAOLivro implements InterfaceCRUD {
             ModeloLivro livro = entry.getValue();
             System.out.println("Nome: " + livro.getNome());
             System.out.println("Autor: " + livro.getAutor());
-            System.out.println("Cópias: " + livro.getQtdCopias());
-            System.out.println("Está disponível: " + livro.isDisponivelParaEmprestimo() ? "sim" : "não");
+            if (livro.isDisponivelParaEmprestimo()) {
+                System.out.println("Está disponível: sim");
+            }else{
+                System.out.println("Está disponível: não");
+            }
+            System.out.println("Cópias: " + livro.getQtdCopias()+"\n");
+
         }
     }
 

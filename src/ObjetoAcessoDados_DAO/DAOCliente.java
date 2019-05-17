@@ -53,7 +53,7 @@ public class DAOCliente implements InterfaceCRUD {
             DAOLivro cLivro = new DAOLivro();
             cliente.addLivroListaEmprestados((ModeloLivro) cLivro.get(nomeLivro));
             clientes.put(cpf, cliente);//escreve mudanças na Lista de clientes
-            cLivro.emprestarLivro(nomeLivro);
+            cLivro.emprestarLivro(nomeLivro);//escreve mudanças na Lista de Livros
             return true;
         } catch (Exception e) {
             System.out.println("Erro metodo pegarLivroEmprestado()");

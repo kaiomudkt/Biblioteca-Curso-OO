@@ -13,7 +13,11 @@ public class ModeloLivro {
         this.nome = nome;
         this.qtdCopias = qtdCopias;
         this.autor = autor;
-        this.disponivelParaEmprestimo = true;
+        if (qtdCopias > 0) {
+            this.disponivelParaEmprestimo = true;
+        }else{
+            this.disponivelParaEmprestimo = false;
+        }
     }
 
     public ModeloLivro(String nome, int qtdCopias, String cpfAutor) {
