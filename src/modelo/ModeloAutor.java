@@ -1,7 +1,12 @@
 package modelo;
 
 import assistente.Pessoa;
-
+/**
+ * 
+ * Classes ModeloClasse, tem por objetivo,
+ * somente modelar algo do mundo real,
+ * para gerar objetos que serão manipulados
+ */
 public class ModeloAutor extends Pessoa {
 
     private int qtdObras;

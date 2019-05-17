@@ -3,6 +3,7 @@ package ObjetoAcessoDados_DAO;
 import assistente.InterfaceCRUD;
 import modelo.ModeloCliente;
 import static armazenaDados.DadosBiblioteca.clientes;
+import modelo.ModeloLivro;
 /**
  * A classe DAOCliente
  * tem acesso direto a lista de clientes,
@@ -50,12 +51,12 @@ public class DAOCliente implements InterfaceCRUD {
                 return false;
             }
             DAOLivro cLivro = new DAOLivro();
-            cliente.addLivroListaEmprestados(cLivro.getLivro(nomeLivro));
+            cliente.addLivroListaEmprestados((ModeloLivro) cLivro.get(nomeLivro));
             clientes.put(cpf, cliente);//escreve mudanças na Lista de clientes
             cLivro.emprestarLivro(nomeLivro);
             return true;
         } catch (Exception e) {
-            System.out.println("talvez nao existe cliente com este cpf");
+            System.out.println("Erro metodo pegarLivroEmprestado()");
             return false;
         }
     }
@@ -67,7 +68,7 @@ public class DAOCliente implements InterfaceCRUD {
         ModeloCliente cliente = clientes.get(cpfCliente);//acha cliente
         DAOLivro cLivro = new DAOLivro();
         if (cliente.contemLivro(nomeLivro)) {
-            cliente.removerLivroListaEmprestados(cLivro.getLivro(nomeLivro));//atualiza livro que estao com o cliente
+            cliente.removerLivroListaEmprestados((ModeloLivro) cLivro.get(nomeLivro));//atualiza livro que estao com o cliente
             cLivro.devolverLivroEmprestado(nomeLivro);//atualiza qtd copias disponivel
         }else{
             System.out.println("Cliente não pegou esse livro para poder devolver.");

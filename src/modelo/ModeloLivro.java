@@ -19,7 +19,7 @@ public class ModeloLivro {
     public ModeloLivro(String nome, int qtdCopias, String cpfAutor) {
         this.nome = nome;
         this.qtdCopias = qtdCopias;
-        this.autor = (ModeloAutor) new DAOAutor().get(cpfAutor);//autores.get(cpfAutor);
+        this.autor = (ModeloAutor) new DAOAutor().get(cpfAutor);
         this.disponivelParaEmprestimo = true;
     }
     
@@ -37,7 +37,7 @@ public class ModeloLivro {
     }
 
     public boolean setQtdCopias(int qtdCopias) {
-        if (this.qtdCopias > 0) {
+        if (this.qtdCopias > 0 && this.qtdCopias - qtdCopias > 0) {
             this.qtdCopias = qtdCopias;
             return true;
         }
@@ -62,7 +62,7 @@ public class ModeloLivro {
 
     @Override
     public String toString() {
-        return getNome() + " " + getAutor() + " " + getQtdCopias(); //To change body of generated methods, choose Tools | Templates.
+        return getNome()/* + " " + getAutor() + " " + getQtdCopias()*/; //To change body of generated methods, choose Tools | Templates.
     }
 
 }

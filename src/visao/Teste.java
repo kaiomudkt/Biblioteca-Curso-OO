@@ -13,12 +13,10 @@ public class Teste {
         cBiblioteca.cadastrarCliente("Diego", "cpfCliente1");
 
         cBiblioteca.ClientePegaLivro("Cronicas", "cpfCliente1");
+        cBiblioteca.ClientePegaLivro("Cronicas", "cpfCliente1");
+        cBiblioteca.ClientePegaLivro("LeagueOfLegends", "cpfCliente1");
         
         cBiblioteca.getCliente("cpfCliente1").pritarLivrosEmprestados();
 
-//        System.out.println("Clientes: " + clientes);
-//        System.out.println("Livros: "+livros);
-//
-//        clientes.get("cpfCliente1").pritarLivrosEmprestados();
     }
 }

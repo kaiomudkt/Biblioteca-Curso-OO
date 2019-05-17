@@ -51,7 +51,7 @@ public class ModeloCliente extends Pessoa {
         System.out.println("Livros emprestados para "+getNome()+": ");
         for (int i = 0; i < livrosEmprestados.length; i++) {
             if (livrosEmprestados[i] != null) {
-                System.out.print(livrosEmprestados[i] + " a");
+                System.out.print(livrosEmprestados[i] + " ");
             }
         }
         System.out.println("");
@@ -67,7 +67,7 @@ public class ModeloCliente extends Pessoa {
 
     @Override
     public String toString() {
-        return " "+getNome() + ", " + getCpf() + ", " + getLivrosEmprestados()+" "; //To change body of generated methods, choose Tools | Templates. acho q vai ter q implementar o hashCode e Equals
+        return " "+getNome() + ", " + getCpf() + ". "; //To change body of generated methods, choose Tools | Templates. acho q vai ter q implementar o hashCode e Equals
     }
 
 }
