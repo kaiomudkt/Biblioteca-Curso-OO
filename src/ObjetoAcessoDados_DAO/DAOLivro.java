@@ -3,18 +3,19 @@ package ObjetoAcessoDados_DAO;
 import modelo.ModeloLivro;
 import static armazenaDados.DadosBiblioteca.livros;
 import assistente.InterfaceCRUD;
+
 /**
- * As classes DAO tem a responsabilidade de interagir com Banco de dados,
- * em nosso caso, com a TreeMap livros.
+ * As classes DAO tem a responsabilidade de interagir com Banco de dados, em
+ * nosso caso, com a TreeMap livros.
  * 
- * Entao todos os acesso aos dados da TreeMap livros,
- * deve ser realizada por meio da classe DAOLivro.
+ * Entao todos os acesso aos dados da TreeMap livros, deve ser realizada por
+ * meio da classe DAOLivro.
  */
 public class DAOLivro implements InterfaceCRUD {
 
     /**
-     * verifica se chave "nome"
-     * existe dentro da TreeMap livros
+     * verifica se chave "nome" existe dentro da TreeMap livros
+     * 
      * @param chave
      * @return boolean
      */
@@ -24,9 +25,9 @@ public class DAOLivro implements InterfaceCRUD {
     }
 
     /**
-     * Realiza o cadastro de um objeto do tipo ModeloLivro
-     * na TreeMap livros
-     * @param obj 
+     * Realiza o cadastro de um objeto do tipo ModeloLivro na TreeMap livros
+     * 
+     * @param obj
      */
     @Override
     public void cadastrar(Object obj) {
@@ -36,7 +37,8 @@ public class DAOLivro implements InterfaceCRUD {
 
     /**
      * remove todo o objeto da TreeMap livros
-     * @param nomeLivro 
+     * 
+     * @param nomeLivro
      */
     @Override
     public void remover(String nomeLivro) {
@@ -44,9 +46,10 @@ public class DAOLivro implements InterfaceCRUD {
     }
 
     /**
-     * Realiza a devolução do livro que estava emprestado,
-     * somando a quantidade de copias disponiveis
-     * @param nome 
+     * Realiza a devolução do livro que estava emprestado, somando a quantidade de
+     * copias disponiveis
+     * 
+     * @param nome
      */
     public void devolverLivroEmprestado(String nome) {
         ModeloLivro livro = livros.get(nome);
@@ -55,9 +58,9 @@ public class DAOLivro implements InterfaceCRUD {
     }
 
     /**
-     * Realiza o emprestimo do livro,
-     * subtraindo quantidade de copias disponiveis
-     * @param nome 
+     * Realiza o emprestimo do livro, subtraindo quantidade de copias disponiveis
+     * 
+     * @param nome
      */
     public void emprestarLivro(String nome) {
         ModeloLivro livro = livros.get(nome);
@@ -77,25 +80,36 @@ public class DAOLivro implements InterfaceCRUD {
     /**
      * 
      * @param chave
-     * @return objeto ModeloLivro 
+     * @return objeto ModeloLivro
      */
     @Override
     public Object get(String chave) {
         return (ModeloLivro) livros.get(chave);
     }
-    
+
     /**
      * printa todos os livros cadastrados
      */
-    public void listarLivrosCadastrados(){
-        livros.;
+    public void listarLivrosCadastrados() {
+        for (Map.Entry<String, ModeloLivro> entry : livros.entrySet()) {
+            ModeloLivro livro = entry.getValue();
+            System.out.println("Nome: " + livro.getNome());
+            System.out.println("Autor: " + livro.getAutor());
+            System.out.println("Cópias: " + livro.getQtdCopias());
+            System.out.println("Está disponível: " + livro.isDisponivelParaEmprestimo() ? "sim" : "não");
+        }
     }
-    
+
     /**
-     * printa todos os livros que estão disponivel para ser emprestado
-     * ou seja, quantidade de copias maior que zero
+     * printa todos os livros que estão disponivel para ser emprestado ou seja,
+     * quantidade de copias maior que zero
      */
-    public void listarLivrosDisponiveis(){
-        livros.;
+    public void listarLivrosDisponiveis() {
+        for (Map.Entry<String, ModeloLivro> entry : livros.entrySet()) {
+            ModeloLivro livro = entry.getValue();
+            if (livro.isDisponivelParaEmprestimo()) {
+                System.out.println(livro.getNome());
+            }
+        }
     }
 }

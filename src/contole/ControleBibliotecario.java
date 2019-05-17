@@ -6,30 +6,28 @@ import ObjetoAcessoDados_DAO.DAOLivro;
 import modelo.ModeloAutor;
 import modelo.ModeloCliente;
 import modelo.ModeloLivro;
+
 /**
- * esta classe ControleBibliotecario,
- tem acesso direto somente as tres classes do tipo DAO
- e utiliza os respectivos MODELO de cada DAO
- para se comunicar com o DAO por objetos de seu tipo "MODELO".
+ * esta classe ControleBibliotecario, tem acesso direto somente as tres classes
+ * do tipo DAO e utiliza os respectivos MODELO de cada DAO para se comunicar com
+ * o DAO por objetos de seu tipo "MODELO".
  * 
- * Por meio desta classe ControleBibliotecario
- que a classe Teste.java
- esta exercendo porcamente o papel de "interface grafica",
- que é a responsável por interagir com o usuario de nossa aplicação,
- assim a classe Teste.java irá interagir somente 
- com a clesse ControleBibliotecario.
-*/
+ * Por meio desta classe ControleBibliotecario que a classe Teste.java esta
+ * exercendo porcamente o papel de "interface grafica", que é a responsável por
+ * interagir com o usuario de nossa aplicação, assim a classe Teste.java irá
+ * interagir somente com a clesse ControleBibliotecario.
+ */
 public class ControleBibliotecario {
-    
-    public ModeloCliente getCliente(String cpf){
+
+    public ModeloCliente getCliente(String cpf) {
         return (ModeloCliente) new DAOCliente().get(cpf);
     }
-    
-    public ModeloLivro getLivro(String nome){
+
+    public ModeloLivro getLivro(String nome) {
         return (ModeloLivro) new DAOLivro().get(nome);
     }
-    
-    public ModeloAutor getAutor(String cpf){
+
+    public ModeloAutor getAutor(String cpf) {
         return (ModeloAutor) new DAOAutor().get(cpf);
     }
 
@@ -62,7 +60,7 @@ public class ControleBibliotecario {
         DAOCliente cCliente = new DAOCliente();
         if (!cCliente.contem(cpf)) {
             System.out.println("Não existe este CPF como cliente.");
-            return;//encerra o método
+            return;// encerra o método
         }
         cCliente.remover(cpf);
     }
@@ -86,31 +84,25 @@ public class ControleBibliotecario {
      */
     public void clienteDevolveLivro(String nomeLivro, String cpf) {
         DAOCliente cCliente = new DAOCliente();
-        if (cCliente.contem(cpf)) {//existe cliente cadastrado
-            if (new DAOLivro().contem(nomeLivro)) {//existe livro cadastrado
+        if (cCliente.contem(cpf)) {// existe cliente cadastrado
+            if (new DAOLivro().contem(nomeLivro)) {// existe livro cadastrado
                 cCliente.devolverLivroEmprestado(nomeLivro, cpf);
-            }else{
+            } else {
                 System.out.println("Livro não cadastrado para poder devolver");
             }
         } else {
             System.out.println("Cliente não cadastrado");
         }
     }
-    
-    
-    public void listaLivrosCadastrados(){
-        DAOLivro cLivro = new DAOLivro();
-        cLivro.
-    
-    }
-    
-    public void listaLivrosDisponiveis(){
-        DAOLivro cLivro = new DAOLivro();
-        cLivro.
-    
-    }
-    
-    
-    
 
+    public void listaLivrosCadastrados() {
+        DAOLivro cLivro = new DAOLivro();
+        cLivro.listarLivrosCadastrados();
+
+    }
+
+    public void listaLivrosDisponiveis() {
+        DAOLivro cLivro = new DAOLivro();
+        cLivro.listarLivrosDisponiveis();
+    }
 }
