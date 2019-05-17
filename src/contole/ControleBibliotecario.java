@@ -41,7 +41,7 @@ public class ControleBibliotecario {
         DAOAutor daoAutor = new DAOAutor();
         if (daoAutor.contem(cpfAutor)) {
             daoLivro.cadastrar(new ModeloLivro(nome, qtdCopias, cpfAutor));
-            ModeloAutor autor = (ModeloAutor) daoAutor.get(nomeAutor);
+            ModeloAutor autor = (ModeloAutor) daoAutor.get(cpfAutor);
             autor.setQtdObras(autor.getQtdObras()+1);
             daoAutor.cadastrar(autor);
         } else {
@@ -112,7 +112,23 @@ public class ControleBibliotecario {
     }
 
     public void listaLivrosDisponiveis() {
+        System.out.println("Livros diponíveis:");
         DAOLivro daoLivro = new DAOLivro();
         daoLivro.listarLivrosDisponiveis();
+        System.out.println("");
+    }
+    
+    public void listaClientes(){
+        System.out.println("Lista de clientes:");
+        DAOCliente daoCliente = new DAOCliente();
+        daoCliente.listaClientes();
+        System.out.println("");
+    }
+    
+    public void listaAutores(){
+        System.out.println("Lista autores:");
+        DAOAutor daoAutor = new DAOAutor();
+        daoAutor.listaAutores();
+        System.out.println("");
     }
 }

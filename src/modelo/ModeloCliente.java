@@ -72,7 +72,7 @@ public class ModeloCliente extends Pessoa {
         return str;
     }
     
-    private String livrosCliente(){
+    public String livrosCliente(){
         String str = "";
         for (int i = 0; i < this.qtdLivro; i++) {
             if (livrosEmprestados[i] != null) {

@@ -3,6 +3,7 @@ package ObjetoAcessoDados_DAO;
 import assistente.InterfaceCRUD;
 import modelo.ModeloAutor;
 import static armazenaDados.DadosBiblioteca.autores;
+import java.util.Map;
 /**
  * Objeto de acesso a dados
  * (acrônimo do inglês Data Access Object - DAO), 
@@ -35,6 +36,13 @@ public class DAOAutor implements InterfaceCRUD {
     @Override
     public Object get(String chave) {
         return (ModeloAutor) autores.get(chave);
+    }
+    
+    public void listaAutores() {
+        for (Map.Entry<String, ModeloAutor> entry : autores.entrySet()) {
+            ModeloAutor autor = entry.getValue();
+            System.out.println(autor.getNome()+" "+autor.getCpf()+" quantidade de obras: "+autor.getQtdObras() );
+        }
     }
 
 }

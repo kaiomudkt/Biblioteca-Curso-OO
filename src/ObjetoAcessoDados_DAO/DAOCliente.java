@@ -3,27 +3,23 @@ package ObjetoAcessoDados_DAO;
 import assistente.InterfaceCRUD;
 import modelo.ModeloCliente;
 import static armazenaDados.DadosBiblioteca.clientes;
+import java.util.Map;
 import modelo.ModeloLivro;
+
 /**
- * A classe DAOCliente
- * tem acesso direto a lista de clientes,
- * que esta armazenada em uma TreeMap,
- * esta TreeMap é do tipo ModeloCliente
- * na classe DadosBiblioteca.java
- * veja que a lista de cliente, chamada de (clientes),
- * é static, ou seja, sempre vamos esta utilizando a MESMA TreeMap clientes,
- * e não uma nova instancia dela.
- * 
- * A classe DAOCliente
- * também importa ModeloCliente.java
- * para poder criar objetos deste tipo/formato
- * e assim poder manipulalos de acordo com a necessidade de cada método.
- 
- A classe DAOCliente
- implementa a interface InterfaceCRUD
- do pacote assitente
- que possui assinatura do comportamento padrão de método 
- necessário em nosso contexto
+ * A classe DAOCliente tem acesso direto a lista de clientes, que esta
+ * armazenada em uma TreeMap, esta TreeMap é do tipo ModeloCliente na classe
+ * DadosBiblioteca.java veja que a lista de cliente, chamada de (clientes), é
+ * static, ou seja, sempre vamos esta utilizando a MESMA TreeMap clientes, e não
+ * uma nova instancia dela.
+ *
+ * A classe DAOCliente também importa ModeloCliente.java para poder criar
+ * objetos deste tipo/formato e assim poder manipulalos de acordo com a
+ * necessidade de cada método.
+ *
+ * A classe DAOCliente implementa a interface InterfaceCRUD do pacote assitente
+ * que possui assinatura do comportamento padrão de método necessário em nosso
+ * contexto
  */
 public class DAOCliente implements InterfaceCRUD {
 
@@ -70,7 +66,7 @@ public class DAOCliente implements InterfaceCRUD {
         if (cliente.contemLivro(nomeLivro)) {
             cliente.removerLivroListaEmprestados((ModeloLivro) cLivro.get(nomeLivro));//atualiza livro que estao com o cliente
             cLivro.devolverLivroEmprestado(nomeLivro);//atualiza qtd copias disponivel
-        }else{
+        } else {
             System.out.println("Cliente não pegou esse livro para poder devolver.");
         }
     }
@@ -80,4 +76,12 @@ public class DAOCliente implements InterfaceCRUD {
         return (ModeloCliente) clientes.get(chave);
     }
 
+    public void listaClientes() {
+        for (Map.Entry<String, ModeloCliente> entry : clientes.entrySet()) {
+            ModeloCliente cliente = entry.getValue();
+            System.out.println(cliente.getNome()+" "+cliente.getCpf()+" "+cliente.livrosCliente() );
+        }
+    }
 }
+
+
