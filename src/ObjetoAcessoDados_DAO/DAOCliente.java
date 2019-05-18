@@ -59,6 +59,8 @@ public class DAOCliente implements InterfaceCRUD {
 
     /**
      *
+     * @param nomeLivro
+     * @param cpfCliente
      */
     public void devolverLivroEmprestado(String nomeLivro, String cpfCliente) {
         ModeloCliente cliente = clientes.get(cpfCliente);//acha cliente
