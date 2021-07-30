@@ -1,4 +1,4 @@
-package contole;
+package controle;
 
 import ObjetoAcessoDados_DAO.DAOAutor;
 import ObjetoAcessoDados_DAO.DAOCliente;

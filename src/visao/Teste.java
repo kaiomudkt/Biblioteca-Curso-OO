@@ -1,6 +1,6 @@
 package visao;
 
-import contole.ControleBibliotecario;
+import controle.ControleBibliotecario;
 
 public class Teste {
 
